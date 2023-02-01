@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: white;
+        }
+
+        /* menu start */
+        .menu {
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+            height: 300px;
+            width: 200px;
+            background-color: rgb(47, 8, 8);
+            border: 4px solid black;
+
+
+        }
+
+        .input {
+            margin-top: 10px;
+        }
+
+        /* menu end */
+        /* map selector start */
+        .map {
+            padding-top: 14px;
+            color: white;
+
+        }
+
+        /* map selector end */
+        .menuTITLE {
+            background-color: rgb(66, 27, 27);
+            border: 1px black solid;
+            color: white;
+        }
+
+        /* grid template */
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            padding: 10px;
+            width: 60%;
+            margin: auto;
+            /* visibility: hidden; */
+        }
+
+        .grid-item {
+            background-color: rgba(255, 255, 255, 0.8);
+            border: 1px solid rgba(94, 94, 94, 0.8);
+            padding: 0px;
+            font-size: 30px;
+            text-align: center;
+            color: red;
+            aspect-ratio: 1;
+
+        }
+
+        /* grid template end */
+
+        /* changing color animtaion */
+        @keyframes example {
+            from {
+                background-color: white;
+            }
+
+            to {
+                background-color: yellow;
+            }
+        }
+
+        .animate {
+            animation-name: example;
+            animation-duration: 0.1s;
+        }
+
+        /* changing color animtaion end */
+    </style>
+</head>
+
+<body>
+    <div id="menu" class="menu">
+        <div class="menuTITLE">
+            <h3>MENU</h1>
+        </div>
+        <button onclick="show_description()">DESCRIPTION</button>
+
+        <div class="map">
+
+            <button onclick="build_map1()">MAP 1</button>
+
+            <button onclick="build_map2()">MAP 2</button>
+
+            <button onclick="build_map3()">MAP 3</button>
+        </div>
+        <div class="input">
+            <input id="Player_name" type="text">
+        </div>
+    </div>
+    <h1 id="output_name"></h1>
+    <h1 id="timer_down"></h1>
+    <button id="button_back" style="display:none" onclick="button_back()">BACK</button>
+    <div id="grid-container" class="grid-container">
+    </div>
+
+
+
+
+</body>
+
+</html>
+<script>
+
+    function show_description() {
+        alert(`Game description
+The king's palace has rooms with square shaped floors that consist of black and white tiles only.
+Light bulbs can only be placed above white tiles.
+The light from the light bulbs does not spread diagonally, only straight along the given row and column.
+The black tiles have objects placed on them, which block the propagation of light.
+Black cells can optionally contain an integer from 0 to 4. This indicates how many adjacent (bottom, top, right, left) cells contain light bulbs. If there is such a number, the puzzle must be solved accordingly!
+Two light bulbs can NEVER illuminate each other!
+The goal of the game is to place the light bulbs so that all the white tiles are illuminated.
+The game is played by one player until he solves the puzzle, so there is no need to manage multiple players at the same time or divide into rounds.`)
+    }
+    function button_back() {
+        timer.stop();
+        document.getElementById("button_back").style.display = "none";
+        document.getElementById("menu").style.display = "block";
+        document.getElementById("grid-container").innerHTML = "";
+        document.getElementById("output_name").innerHTML = "";
+        document.getElementById("timer_down").style.visibility = "hidden";
+    }
+    // ------------------------------------------------------------------------------------------------------
+
+    let dim = 0;
+    let second = 0;
+    var timer = new Timer(function () {
+        second += 1;
+        document.getElementById("timer_down").innerHTML = "The current game time is : " + second + "seconds "
+    }, 1000);
+    timer.stop();
+    let map_name = "";
+    let name = "";
+    function build_map1() {
+        document.getElementById("grid-container").style.gridTemplateColumns = "1fr 1fr 1fr 1fr 1fr 1fr 1fr "
+        document.getElementById("timer_down").style.visibility = "visible";
+        document.getElementById("button_back").style.display = "block";
+        document.getElementById("menu").style.display = "none";
+        name = document.getElementById("Player_name").value;
+        map_name = "easy 7x7"
+        timer.start();
+        dim = 7;
+        // document.getElementById("Player_name").disabled = true;
+
+        document.getElementById("output_name").innerText = "Player Name: " + name;
+
+        const easy77 = [
+            null, null, null, 1, null, null, null,
+            null, 0, null, null, null, 2, null,
+            null, null, null, null, null, null, null,
+            -1, null, null, -1, null, null, - 1,
+            null, null, null, null, null, null, null,
+            null, -1, null, null, null, 2, null,
+            null, null, null, 3, null, null, null,
+        ];
+
+        document.getElementById("grid-container").innerHTML = ``
+        easy77.forEach(element => {
+            let color = "white";
+            let text_content = "";
+
+            if (element != null) {
+                color = "black";
+                text_content = element;
+                if (element == -1) {
+                    text_content = "";
+                }
+            }
+            document.getElementById("grid-container").innerHTML += `
+        <div onclick="bulb(event)" class="grid-item" data-limiter="0" style="background-color: ${color};">${text_content}</div>`
+        });
+    }
+    // ------------------------------------------------------------------------------------------------------
+    function build_map2() {
+        map_name = "advanced 7x7"
+        timer.start();
+        document.getElementById("timer_down").style.visibility = "visible";
+        document.getElementById("grid-container").style.gridTemplateColumns = "1fr 1fr 1fr 1fr 1fr 1fr 1fr "
+        dim = 7;
+        const easy77 = [
+            null, null, 0, null, -1, null, null,
+            null, null, null, null, null, null, null,
+            -1, null, -1, null, 3, null, -1,
+            null, null, null, 1, null, null, null,
+            2, null, -1, null, -1, null, -1,
+            null, null, null, null, null, null, null,
+            null, null, -1, null, 2, null, null,
+        ];
+        name = document.getElementById("Player_name").value;
+        document.getElementById("output_name").innerText = "Player Name: " + name;
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("button_back").style.display = "block";
+        document.getElementById("grid-container").innerHTML = ``
+        easy77.forEach(element => {
+            let color = "white";
+            let text_content = "";
+
+            if (element != null) {
+                color = "black";
+                text_content = element;
+                if (element == -1) {
+                    text_content = "";
+                }
+            }
+            document.getElementById("grid-container").innerHTML += `
+        <div onclick="bulb(event)" class="grid-item" data-limiter="0" style="background-color: ${color};">${text_content}</div>`
+        });
+
+    }
+    // ------------------------------------------------------------------------------------------------------
+
+
+    function build_map3() {
+        map_name = "extreme 10x10"
+        timer.start();
+        document.getElementById("timer_down").style.visibility = "visible";
+
+        document.getElementById("grid-container").style.gridTemplateColumns = "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr"
+        dim = 10;
+        const easy77 = [
+            null, -1, null, null, null, null, null, null, null, null,
+            null, null, null, null, null, 3, null, 2, null, -1,
+            null, 0, -1, null, null, null, null, -1, null, null,
+            null, null, null, null, -1, null, null, null, null, null,
+            null, 1, null, null, -1, 1, -1, null, null, null,
+            null, null, null, -1, -1, -1, null, null, 3, null,
+            null, null, null, null, null, -1, null, null, null, null,
+            null, null, 1, null, null, null, null, 0, -1, null,
+            3, null, -1, null, 0, null, null, null, null, null,
+            null, null, null, null, null, null, null, null, 0, null,
+
+        ];
+
+        name = document.getElementById("Player_name").value;
+        document.getElementById("output_name").innerText = "Player Name: " + name;
+        document.getElementById("menu").style.display = "none";
+        document.getElementById("button_back").style.display = "block";
+        document.getElementById("grid-container").innerHTML = ``
+        easy77.forEach(element => {
+            let color = "white";
+            let text_content = "";
+
+            if (element != null) {
+                color = "black";
+                text_content = element;
+                if (element == -1) {
+                    text_content = "";
+                }
+            }
+            document.getElementById("grid-container").innerHTML += `
+        <div onclick="bulb(event)" class="grid-item" data-limiter="0" style="background-color: ${color};">${text_content}</div>`
+        });
+
+    }
+
+    // ------------------------------------------------------------------------------------------------------
+    // timer
+    function Timer(fn, t) {
+        var timerObj = setInterval(fn, t);
+
+        this.stop = function () {
+            if (timerObj) {
+                clearInterval(timerObj);
+                timerObj = null;
+            }
+            return this;
+        }
+
+
+        this.start = function () {
+            second = 0;
+            document.getElementById("timer_down").innerHTML = "The current game time is : 0 seconds"
+            if (!timerObj) {
+                this.stop();
+                timerObj = setInterval(fn, t);
+            }
+            return this;
+        }
+
+
+        this.reset = function (newT = t) {
+            t = newT;
+            return this.stop().start();
+        }
+    }
+
+    // timer end
+    //creating bulbs
+    function bulb(event) {
+        if (event.target.style.backgroundColor != "black") {
+            if (event.target.innerHTML == "" && check_if_possilbe(event.target)) {
+                event.target.innerHTML = "💡";
+                godlight(event.target);
+                didwin(event.target);
+
+            }
+            else {
+                event.target.innerHTML = "";
+                made_in_heaven(event);
+                didwin(event.target);
+            }
+        }
+        check_if_green()
+
+    }
+    //creating bulbs
+    // green color
+    function check_if_green() {
+        let grid = (document.getElementById("grid-container").children)
+        // creating
+
+        for (let i = 0; i < grid.length; i++) {
+            if (grid[i].style.backgroundColor == "black" && grid[i].innerHTML == grid[i].dataset.limiter) {
+                grid[i].style.color = "green";
+            } else {
+                grid[i].style.color = "red";
+            }
+        }
+    }
+    // green color end
+    function godlight(target) {
+        let grid = (document.getElementById("grid-container").children)
+        let chosen;
+        // creating
+        for (let i = 0; i < grid.length; i++) {
+            if (target == grid[i]) {
+                chosen = i;
+            }
+        }
+
+        // checks amount of bulbms around a black thing
+        if (chosen + 1 < dim * dim && grid[chosen + 1].style.backgroundColor == "black") {
+            let number = parseInt(grid[chosen + 1].dataset.limiter)
+            grid[chosen + 1].dataset.limiter = number + 1;
+        }
+        if (chosen - 1 >= 0 && grid[chosen - 1].style.backgroundColor == "black") {
+            let number = parseInt(grid[chosen - 1].dataset.limiter)
+            grid[chosen - 1].dataset.limiter = number + 1;
+        }
+        if (chosen + dim < dim * dim && grid[chosen + dim].style.backgroundColor == "black") {
+            let number = parseInt(grid[chosen + dim].dataset.limiter)
+            grid[chosen + dim].dataset.limiter = number + 1;
+        }
+        if (chosen - dim >= 0 && grid[chosen - dim].style.backgroundColor == "black") {
+            let number = parseInt(grid[chosen - dim].dataset.limiter)
+            grid[chosen - dim].dataset.limiter = number + 1;
+        }
+        // checks amount of bulbms around a black thing end 
+
+        //
+        for (let i = chosen; i < chosen + (dim - (chosen % dim)); i++) {
+            if (grid[i].style.backgroundColor != "black" && i != chosen ) {
+                grid[i].style.backgroundColor = "yellow";
+                grid[i].classList.add("animate");
+            }
+            else if(i != chosen){
+                break;
+            }if(grid[i].innerHTML == "💡" && grid[i] != grid[chosen]){
+                grid[i].style.backgroundColor = "red"
+                grid[chosen].style.backgroundColor = "red"// fsduihfirusdfguierdghuierghriugh
+                console.log(grid[chosen].style.backgroundColor)
+            }
+        }
+        //
+        for (let i = chosen; i >= chosen - (chosen % dim); i--) {
+            if (grid[i].style.backgroundColor != "black" && i != chosen) {
+                grid[i].style.backgroundColor = "yellow";
+                grid[i].classList.add("animate");
+            }
+            else if(i != chosen){
+                break;
+            }if(grid[i].innerHTML == "💡" && grid[i] != grid[chosen] ){
+                grid[i].style.backgroundColor = "red"
+                grid[chosen].style.backgroundColor = "red"
+                console.log(grid[chosen].style.backgroundColor)
+            }
+        }
+        //
+        for (let i = chosen; i < dim * dim; i += dim) {
+            if (grid[i].style.backgroundColor != "black"  && i != chosen) {
+                grid[i].style.backgroundColor = "yellow";
+                grid[i].classList.add("animate");
+            }
+            else if(i != chosen){
+                break;
+            }if(grid[i].innerHTML == "💡" && grid[i] != grid[chosen] ){
+                grid[i].style.backgroundColor = "red"
+                grid[chosen].style.backgroundColor = "red"
+                console.log(grid[chosen].style.backgroundColor)
+            }
+        }
+        //
+        for (let i = chosen; i >= 0; i -= dim) {
+            if (grid[i].style.backgroundColor != "black"  && i != chosen) {
+                grid[i].style.backgroundColor = "yellow";
+                grid[i].classList.add("animate");
+            }
+            else if(i != chosen) {
+                break;
+            }if(grid[i].innerHTML == "💡" && grid[i] != grid[chosen] ){
+                grid[i].style.backgroundColor = "red"
+                grid[chosen].style.backgroundColor = "red"
+                console.log(grid[chosen].style.backgroundColor)
+            }
+        }
+        if (grid[chosen].style.backgroundColor != "red" ){
+            grid[chosen].style.backgroundColor = "yellow"
+        }
+        //
+    }
+    // ------------------------------------------------------------------------------------------------------
+
+    // creating
+    //deleting wrong tiles
+    function made_in_heaven(event) {
+        let grid = (document.getElementById("grid-container").children)
+        for (let i = 0; i < dim * dim; i++) {
+            if (grid[i].style.backgroundColor != "black") {
+                grid[i].style.backgroundColor = "white";
+            } else {
+                grid[i].dataset.limiter = 0;
+            }
+        }
+        for (let i = 0; i < dim * dim; i++) {
+            if (grid[i].style.backgroundColor != "black" && grid[i].innerHTML == "💡") {
+                godlight(grid[i]);
+            }
+        }
+
+    }
+    //deleting wrong tiles end
+    // winning
+    function didwin(target) {
+        let grid = (document.getElementById("grid-container").children)
+        let found_white_or_red = false;
+        for (let i = 0; i < dim * dim; i++) {
+            if (grid[i].style.backgroundColor == "white" || grid[i].style.backgroundColor == "red") {
+                found_white_or_red = true;
+                break
+            }
+        }
+        if (found_white_or_red == false) {
+            timer.stop();
+            setTimeout(() => {
+                alert(`YOU WON, you have finished the round in ${second} seconds and your name is ${name} and the map name is ${map_name}`);
+
+                button_back()
+            }, 500)
+        }
+
+    }
+
+
+    function check_if_possilbe(target) {
+        let grid = (document.getElementById("grid-container").children)
+        for (let i = 0; i < grid.length; i++) {
+            if (target == grid[i]) {
+                chosen = i;
+            }
+        }
+
+        // checks amount of bulbms around a black thing
+        if (chosen + 1 < dim * dim && grid[chosen + 1].style.backgroundColor == "black") {
+            let number = parseInt(grid[chosen + 1].dataset.limiter)
+            if (number + 1 <= parseInt(grid[chosen + 1].innerHTML) || grid[chosen + 1].innerHTML == "") {
+                return true
+            } else { return false }
+        }
+        if (chosen - 1 >= 0 && grid[chosen - 1].style.backgroundColor == "black") {
+            let number = parseInt(grid[chosen - 1].dataset.limiter)
+            if (number + 1 <= parseInt(grid[chosen - 1].innerHTML) || grid[chosen - 1].innerHTML == "") {
+                return true
+            } else { return false }
+        }
+        if (chosen + dim < dim * dim && grid[chosen + dim].style.backgroundColor == "black") {
+            let number = parseInt(grid[chosen + dim].dataset.limiter)
+            if (number + 1 <= parseInt(grid[chosen + dim].innerHTML) || grid[chosen + dim].innerHTML == "") {
+                return true
+            } else { return false }
+        }
+        if (chosen - dim >= 0 && grid[chosen - dim].style.backgroundColor == "black") {
+            let number = parseInt(grid[chosen - dim].dataset.limiter)
+            if (number + 1 <= parseInt(grid[chosen - dim].innerHTML) || grid[chosen - dim].innerHTML == "") {
+                return true
+            } else { return false }
+        }
+        return true;
+    }
+
+
+
+
+
+
+</script>
