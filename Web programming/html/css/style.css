@@ -1,0 +1,520 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    background-color: #cccbcb;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+
+}
+.container2 {
+    background-color: #022B3A;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+
+}
+/* Shows medias */
+.medias{
+   
+    
+    min-width:400px;
+    min-height: 300px;
+    background-color:#cccbcb ;
+    width: 400px;
+    height: 400px;
+    padding:10px;
+    
+    border-style:solid;
+    border-width: 7px;
+    border-color: #022B3A;
+    border-radius: 23px;
+
+    
+    text-align: center;
+    margin-top: 20px ;
+
+} 
+
+
+
+/* Delivert part */
+.delivery h4 {
+    text-shadow: 2px 2px 4px #000000;
+    color: #ffffff;
+
+    text-align: left;
+    font-size: 20px;
+    margin-left: 160px;
+    margin-top: 50px;
+    
+}
+
+.delivery{
+    
+    text-align: left;
+    font-weight: bold;
+    margin-left: 32px;
+    margin-top: 15px;
+    
+    
+}
+
+.insideD{
+    background-color:#cccbcb ;
+    border-style:solid;
+    border-width: 7px;
+    border-color: #022B3A;
+    border-radius: 23px;
+   
+    
+    width: 550px;
+    padding:20px;
+    margin-left: 160px;
+
+}
+
+.insideD th{
+    padding:4px;
+}
+/* end Delivert part */
+
+
+/* end Shows medias */
+
+
+/* Promo video */
+.promo p{
+    
+    text-shadow: 2px 2px 4px #000000;
+    color: #ffffff;
+    font-size: 20px;
+    margin-left: 160px;
+    margin-top: 30px;
+    padding:15px;
+    font-weight:bold;
+
+
+}
+
+.registerguide iframe {
+
+ 
+    border-width: 0px;
+    padding:10px;
+    margin-left: 150px;
+    margin-top: 20px ;
+    width: 560px; 
+    height: 315px;
+
+}
+
+/* end Promo Video */
+
+
+
+
+
+
+ul{  
+    margin:0;
+    padding: 0;
+}
+
+ .table td {
+    font-weight: bold;
+    font-size: 15px;
+} 
+
+
+
+
+/* Button */
+
+
+.buttonA{
+    margin-left: 160px;
+    display: inline-flex;
+    height: 80px;
+    width:130px;
+  
+    background: #022B3A;
+    border:none;
+    outline:none;
+    border-radius:5px;
+    overflow:hidden;
+    font-size:17px;
+    
+    text-transform: capitalize;
+    color:#ffffff;
+    
+}
+
+
+/* end button */
+
+
+/* HEADERS */
+header { 
+    background-color: #f3f3f3;
+    text-align: center;
+    min-height: 100px;
+    
+
+}
+
+.second {
+    margin-bottom: 3%;
+}
+
+.second header{
+    border-bottom:  #022B3A 5px solid;
+}
+
+
+
+header a{
+    color : #1F7A8C;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size : 20px;
+    
+}
+
+header a:hover{
+    color:#cccccc;
+    font-weight: bold;
+    
+}
+
+
+
+header li{
+
+    float:left;
+    display: inline;
+    padding: 0 20px 0 9px ;
+}
+
+
+
+.input li{
+
+    float:right;
+    display: inline;
+    padding: 0 20px 0 20px ;
+}
+
+header img{
+    margin-left:auto;
+    margin-right:auto;
+
+}
+
+header .currect a{
+    color:#DA7635;
+    font-weight: bold;
+}
+
+/* End HEADERS */
+
+
+ /* THE MAIN PART */
+.center {
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 90px;
+   
+}
+
+.register {
+    float: right;
+    margin-top: -8px;
+    margin-right: 10px;
+}
+
+footer p {
+    margin-left: auto;
+    text-align: center;
+}
+
+
+
+.table {
+    width: 350px;
+    height: 200px;
+    color: black;
+  
+}
+
+.table td{
+    padding-left: 25px;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+}
+
+
+
+
+/* MY ITEMS */
+
+#items .box{
+    display: inline-block;
+    width: 20%;
+    padding: 80px;
+    text-align: left;
+    font-size: 15px;
+}
+
+
+
+/* Reviews */
+
+#items .boxR{
+    display: inline-block;
+    margin-left: 32px;
+    width: 30%;
+    border: none;
+    text-align: center;
+    font-size: 15px;
+    padding: 15px;
+    
+}
+
+
+/* end Reviews */
+
+
+/* Login page */
+
+
+ body {font-family: Arial, Helvetica, sans-serif;}
+
+
+input[type=text], input[type=password], input[type=code]{
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #022B3A;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.reset {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #a00b00;
+}
+
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+} 
+
+/* end  Login page */
+
+
+/* Support  */
+.btn-group button {
+    margin-top:32px;
+    background-color: #022B3A; 
+    border: 1px solid #022B3A; 
+    color: white; /* White text */
+    padding: 10px 24px; /* Some padding */
+    cursor: pointer; /* Pointer/hand icon */
+    width: 20%; /* Set a width if needed */
+    display: block; /* Make the buttons appear below each other */
+  }
+  
+  .btn-group button:not(:last-child) {
+    border-bottom: none; /* Prevent double borders */
+  }
+  
+  /* Add a background color on hover */
+  .btn-group button:hover {
+    background-color: #ab8cff;
+  }
+/* end Support */
+
+
+
+/* Language seelect area */
+
+select {
+    color:#000000;
+    width: auto !important;
+ }
+/* end Language seelect area  */
+
+footer{
+    padding: 40px;
+    margin-top: 100px;
+    color:#ffffff;
+    background-color:#022B3A;
+}
+
+
+.seacrch-bar{
+    float:right;  
+    margin-bottom: 1px;
+  
+}
+
+.stars > img {
+    width: 100%;
+}
+
+
+/* Small devices like phone */
+@media only screen and (max-width: 600px) {
+ 
+    .center img{
+        width: 800px;
+        height: 350px;
+    }
+    
+    .second {
+        margin-bottom: 3%;
+    }
+    
+    .second header{
+        border-bottom:  #022B3A 5px solid;
+        width: 530px;
+    }
+
+    header { 
+        background-color: #f3f3f3;
+        text-align: center;
+      width: 530px;
+      height: auto;
+        
+    
+    }
+
+    footer{
+        width: 510px;
+        padding: 40px;
+        margin-top: 100px;
+        color:#ffffff;
+        background-color:#022B3A;
+    }
+
+
+
+
+    /* Delivert part */
+.delivery h4 {
+    text-shadow: 2px 2px 4px #000000;
+    color: #ffffff;
+
+    text-align: left;
+    font-size: 20px;
+    margin-left: 160px;
+    margin-top: 50px;
+    
+}
+
+.delivery{
+    
+    text-align: left;
+    font-weight: bold;
+    margin-left: 6px;
+    margin-top: 15px;
+    
+    
+}
+
+.insideD{
+    background-color:#cccbcb ;
+    border-style:solid;
+    border-width: 7px;
+    border-color: #022B3A;
+    border-radius: 23px;
+   
+    
+    width: 350px;
+    padding:20px;
+    margin-left: 160px;
+
+}
+
+.insideD th{
+    padding:4px;
+}
+/* end Delivert part */
+
+
+/* end Shows medias */
+
+.medias{
+   
+    
+    min-width:400px;
+    min-height: 300px;
+    background-color:#cccbcb ;
+    width: 500px;
+    height: 400px;
+    padding:10px;
+    
+    border-style:solid;
+    border-width: 7px;
+    border-color: #022B3A;
+    border-radius: 23px;
+
+    
+    text-align: center;
+    margin-top: 20px ;
+
+} 
+
+
+
+
+
+
+.registerguide iframe {
+
+ 
+    border-width: 0px;
+    padding:10px;
+    margin-left: 1px;
+    margin-top: 20px ;
+    width: 530px; 
+    height: 305px;
+
+}
+
+
+
+}
+  
+
+  
+
+  
